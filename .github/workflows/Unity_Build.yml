@@ -1,12 +1,13 @@
-name: Actions 😎
+name: Compilar el Proyecto 😎
 
-on: [push, pull_request]
+on: push
 
 jobs:
   build:
     name: Build my project ✨
     runs-on: ubuntu-latest
     steps:
+    
       # Checkout
       - name: Checkout repository
         uses: actions/checkout@v4
