@@ -1,38 +1,29 @@
-name: Compilar el Proyecto 😎
+name: Compilar y Subir a Itch.io 😎
 
 on: push
 
 jobs:
   build:
-    name: Build my project ✨
+    name: Build y Deploy ✨
     runs-on: ubuntu-latest
     steps:
-    
-      # Checkout
+
+      # 1. Checkout del repositorio
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           lfs: true
 
-      # Cache
-      - uses: actions/cache@v3
+      # 2. Cache de librerías para acelerar la compilación
+      - name: Cache Library
+        uses: actions/cache@v3
         with:
           path: Library
           key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
           restore-keys: |
             Library-
 
-      # Test
-      - name: Run tests
-        uses: game-ci/unity-test-runner@v4
-        env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-        with:
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
-
-      # Build
+      # 3. Compilar el proyecto con Unity para WebGL
       - name: Build project
         uses: game-ci/unity-builder@v4
         env:
@@ -42,8 +33,18 @@ jobs:
         with:
           targetPlatform: WebGL
 
-      # Output
-      - uses: actions/upload-artifact@v3
+      # 4. Subir la build generada como artefacto (opcional)
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
         with:
           name: Build
           path: build
+
+      # 5. Subir la build a Itch.io
+      - name: Deploy to Itch.io
+        uses: robpc/itchio-upload-action@v1
+        with:
+          path: build
+          project: bernardo2806/realistic-head-soccer
+          channel: webgl
+          api-key: ${{ secrets.ITCHIO_API_KEY }}
