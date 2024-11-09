@@ -468,6 +468,7 @@ GameObject:
   - component: {fileID: 1717549013}
   - component: {fileID: 1717549016}
   - component: {fileID: 1717549017}
+  - component: {fileID: 1717549018}
   m_Layer: 0
   m_Name: Botin
   m_TagString: Untagged
@@ -912,6 +913,24 @@ PolygonCollider2D:
       - {x: -5.24, y: -4.4449997}
       - {x: -5.12, y: -4.4449997}
   m_UseDelaunayMesh: 0
+--- !u!114 &1717549018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1717549012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25f02d94df9ca6f4e978db92c44cfe83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teclaIzquierda: 97
+  teclaDerecha: 100
+  teclaPatear: 32
+  velocidadMovimiento: 5
+  anguloPateo: 15
+  tiempoPateo: 0.1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
