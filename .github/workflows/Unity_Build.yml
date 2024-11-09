@@ -44,7 +44,7 @@ jobs:
       - name: Deploy to Itch.io
         uses: robpc/itchio-upload-action@v1
         with:
-          path: build
+          path: build/WebGL
           project: bernardo2806/realistic-head-soccer
           channel: webgl
           api-key: ${{ secrets.ITCHIO_API_KEY }}
